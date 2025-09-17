@@ -1,4 +1,4 @@
-# Lab 1
+# Lab 1 -- Bautista Torregiani
 
 ![Diagrama Entidad Relación](./DER.jpeg)
 

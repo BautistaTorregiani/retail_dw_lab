@@ -1,0 +1,24 @@
+import pandas as pd
+from pathlib import Path
+
+# Cargar los CSV existentes
+products = pd.read_csv(r"C:\Users\BautyTorre\Desktop\Repos\retail_dw_lab\raw\products.csv")
+categories = pd.read_csv(r"C:\Users\BautyTorre\Desktop\Repos\retail_dw_lab\raw\categories.csv")
+
+# Crear la dimensión de productos
+dim_products = products.merge(
+    categories[["category_id", "category_name"]],
+    on="category_id",
+    how="left"
+)
+
+# Definir la ruta de destino (tu usuario BautyTorre)
+output_path = Path(r"C:\Users\BautyTorre\Desktop\Repos\retail_dw_lab\raw\dim")
+
+# Crear la carpeta si no existe
+output_path.mkdir(parents=True, exist_ok=True)
+
+# Guardar el archivo CSV
+dim_products.to_csv(output_path / "dim_products.csv", index=False)
+
+print("Archivo CSV guardado en:", output_path / "dim_products.csv")
